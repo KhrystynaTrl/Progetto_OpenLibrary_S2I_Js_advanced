@@ -20,7 +20,19 @@ function createItem(book) {
 
   divBooks.addEventListener("click", async () => {
     const getDetail = await getBookDetail(book);
-    alert(getDetail.description?.value);
+    let checkP = document.getElementById("descriptionP");
+    if (checkP != null) {
+      checkP.parentNode.removeChild(checkP);
+    }
+    let description = document.getElementById("description");
+    let descriptionPara = document.createElement("p");
+    descriptionPara.id = "descriptionP";
+    description.appendChild(descriptionPara);
+
+    divBooks.appendChild(descriptionPara);
+    if (getDetail.description?.value == undefined) {
+      return (descriptionPara.innerHTML = "descrizione non disponibile");
+    } else descriptionPara.innerText = getDetail.description?.value;
   });
 }
 

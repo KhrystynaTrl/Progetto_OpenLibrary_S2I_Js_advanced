@@ -39,6 +39,9 @@ body {
     }
   }
   .divBook {
+    display: flex;
+    flex-direction: column;
+
     ul {
       list-style: none;
       margin: 0;
@@ -55,5 +58,13 @@ body {
         border-bottom: solid black 2px;
       }
     }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body .divBook ul .liClass {
+    margin-left: 0;
+    padding-left: 0;
+    background-image: none;
   }
 }
