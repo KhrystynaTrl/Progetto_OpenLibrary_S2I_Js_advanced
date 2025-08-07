@@ -3,15 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Open Library</title>
+    <meta name="description" content="Search and discover books using the Open Library database. Find your next great read!" />
+    <meta name="keywords" content="books, library, search, open library, reading" />
+    <meta name="author" content="Open Library Search App" />
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://covers.openlibrary.org; connect-src 'self' https://openlibrary.org; style-src 'self' 'unsafe-inline';" />
+    
+    <title>Open Library - Book Search</title>
     <link rel="stylesheet" href="scss/index.scss" />
     <script type="module" src="js/index.js"></script>
   </head>
   <body>
-    <form action="/cerca" method="get">
-      <input type="search" name="query" placeholder="Cerca un libro..." />
-      <button type="submit">🔍</button>
-    </form>
+    <header>
+      <h1>Open Library Book Search</h1>
+    </header>
+    
+    <main>
+      <!-- Removed insecure form action and method, now handled by JavaScript -->
+      <form role="search" aria-label="Book search form">
+        <div class="search-container">
+          <label for="book-search" class="visually-hidden">Search for books</label>
+          <input 
+            type="search" 
+            id="book-search"
+            name="query" 
+            placeholder="Search for books, authors, or topics..."
+            aria-describedby="search-help"
+            autocomplete="off"
+            required
+            minlength="2"
+            maxlength="100"
+          />
+          <button type="submit" aria-label="Search books">
+            <span aria-hidden="true">🔍</span>
+            <span class="button-text">Search</span>
+          </button>
+        </div>
+        <div id="search-help" class="search-help">
+          Enter at least 2 characters to search for books
+        </div>
+      </form>
+      
+      <!-- Results will be inserted here by JavaScript -->
+      <section id="search-results" aria-live="polite" aria-label="Search results"></section>
+    </main>
+    
+    <footer>
+      <p>Powered by <a href="https://openlibrary.org" target="_blank" rel="noopener noreferrer">Open Library</a></p>
+    </footer>
   </body>
 </html>
